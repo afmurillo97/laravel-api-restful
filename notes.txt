@@ -1,0 +1,27 @@
+### No command includes the square brackets {}
+
+
+
+-- Change Laravel Application Directory Permissions 
+
+sudo chmod -R 775 /var/www/html/laravel-api-restful
+
+-- Change the owner of the application directory to the web server user 
+  and group
+
+sudo chown -R www-data:www-data /var/www/html/laravel-api-restful
+
+-- Create Model with -c: controller m: migration f: factory
+
+php artisan make:model {model-name} -cmf
+
+-- Clear Laravel cache
+
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
+-- Create Resource controller
+
+php artisan make:resource V1/PostResource
