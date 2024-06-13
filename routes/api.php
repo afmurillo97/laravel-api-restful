@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::apiResource('v1/posts', PostController::class)->only('show');
+Route::apiResource('v1/posts', PostController::class)
+    ->only(['index', 'show', 'destroy']);
