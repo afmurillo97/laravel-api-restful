@@ -25,3 +25,7 @@ php artisan view:clear
 -- Create Resource controller
 
 php artisan make:resource V1/PostResource
+
+-- Include Autentication
+
+composer require laravel/sanctum
