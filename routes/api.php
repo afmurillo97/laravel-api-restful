@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\v1\PostController;
+use App\Http\Controllers\Api\v1\PostController as PostV1;
+use App\Http\Controllers\Api\v2\PostController as PostV2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::apiResource('v1/posts', PostController::class)
+Route::apiResource('v1/posts', PostV1::class)
     ->only(['index', 'show', 'destroy']);
+
+Route::apiResource('v2/posts', PostV2::class)
+    ->only(['index', 'show']);
