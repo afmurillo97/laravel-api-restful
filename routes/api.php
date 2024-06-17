@@ -18,9 +18,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::apiResource('v1/posts', PostV1::class)
-    ->only(['index', 'show', 'destroy'])
-    ->middleware('auth:sanctum');
+// Route::apiResource('v1/posts', PostV1::class)
+//     ->only(['index', 'show', 'destroy'])
+//     ->middleware('auth:sanctum');
+
+// Public Routes V1
+Route::get('v1/posts', [PostV1::class, 'index']);
+Route::get('v1/posts/{post}', [PostV1::class, 'show']);
+
+// Protected Routes V1
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('v1/posts', [PostV1::class, 'store']);
+    Route::put('v1/posts/{post}', [PostV1::class, 'update']);
+    Route::delete('v1/posts/{post}', [PostV1::class, 'destroy']);
+});
 
 Route::apiResource('v2/posts', PostV2::class)
     ->only(['index', 'show'])
