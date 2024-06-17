@@ -9,6 +9,23 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $table = 'posts';
+
+    protected $primaryKey = 'id';
+
+    public $timestamps = true;
+
+    protected $fillable = [
+        'user_id',
+        'title',
+        'slug',
+        'content'
+    ];
+
+    protected $guarded = [
+        
+    ];
+
     public function getExcerptAttribute()
     {
         return substr($this->content, 0, 120);
