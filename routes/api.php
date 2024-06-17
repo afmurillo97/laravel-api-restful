@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\v1\PostController as PostV1;
 use App\Http\Controllers\Api\v2\PostController as PostV2;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// Route::apiResource('v1/posts', PostV1::class)
-//     ->only(['index', 'show', 'destroy'])
-//     ->middleware('auth:sanctum');
+Route::post('login', [
+    LoginController::class, 
+    'login'
+]);
 
 // Public Routes V1
 Route::get('v1/posts', [PostV1::class, 'index']);
@@ -33,11 +32,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('v1/posts/{post}', [PostV1::class, 'destroy']);
 });
 
-Route::apiResource('v2/posts', PostV2::class)
-    ->only(['index', 'show'])
-    ->middleware('auth:sanctum');
+// Public Routes V2
+Route::get('v2/posts', [PostV2::class, 'index']);
+Route::get('v2/posts/{post}', [PostV2::class, 'show']);
 
-Route::post('login', [
-    LoginController::class, 
-    'login'
-]);
+// Protected Routes V2
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('v2/posts', [PostV2::class, 'store']);
+    Route::put('v2/posts/{post}', [PostV2::class, 'update']);
+    Route::delete('v2/posts/{post}', [PostV2::class, 'destroy']);
+});
