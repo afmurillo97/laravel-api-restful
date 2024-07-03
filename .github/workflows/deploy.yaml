@@ -1,0 +1,65 @@
+name: VPS_Hosting deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Repository Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up PHP environment
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2.10'
+
+    - name: Install PHP dependencies
+      run: composer install --no-dev --prefer-dist --no-scripts --no-progress --no-suggest
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.13.0'
+
+    - name: Install Node.js dependencies
+      run: npm ci
+
+    - name: Build assets
+      run: npm run production
+
+    - name: Configure env
+      run: |
+        php artisan config:cache
+        php artisan migrate --seed
+      env:
+        FTP_HOST: ${{ secrets.FTP_HOST }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }} 
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }} 
+        FTP_DESTINATION: ${{ secrets.FTP_DESTINATION }}
+
+    - name: Deploy to VPS hosting
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_DESTINATION }}
+
+        # 3044268969
+        # NRO Radicado: 
+
+
+# api-demo-admin
+# ac2CdVdtcCWCBOIU9B4K
+
+# db_name: api-demo-db
+# db_user: admin-api-demo
+# db_password: r6jRl0P3zjU6RactXavN
+# url_base: /home/api-demo/htdocs/www.api-demo.online/
+
+
