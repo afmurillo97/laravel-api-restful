@@ -35,6 +35,7 @@ return [
                 'annotations' => [
                     base_path('app/Http/Controllers/Api/v1'),
                     base_path('app/Http/Resources/V1'),
+                    base_path('app/Http/Controllers/Api/LoginController.php'),
                 ],
             ],
         ],
@@ -70,6 +71,7 @@ return [
                 'annotations' => [
                     base_path('app/Http/Controllers/Api/v2'),
                     base_path('app/Http/Resources/V2'),
+                    base_path('app/Http/Controllers/Api/LoginController.php'),
                 ],
             ],
         ],
