@@ -29,3 +29,15 @@ php artisan make:resource V1/PostResource
 -- Include Autentication
 
 composer require laravel/sanctum
+
+-- Reload Apache Server
+
+systemctl reload apache2
+
+-- Enable .conf file for virtual host
+
+sudo a2ensite laravel-api.conf
+
+-- Update Swagger Documentation
+
+php artisan l5-swagger:generate
