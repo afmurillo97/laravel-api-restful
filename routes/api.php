@@ -11,10 +11,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::post('login', [
-    LoginController::class, 
-    'login'
-]);
+// Login Route for both versions
+Route::post('login', [LoginController::class, 'login']);
 
 Route::prefix('v1')->group(function () {
     // Posts Routes
@@ -31,6 +29,7 @@ Route::prefix('v1')->group(function () {
         });
     });
 });
+
 
 Route::prefix('v2')->group(function () {
     // Posts Routes
