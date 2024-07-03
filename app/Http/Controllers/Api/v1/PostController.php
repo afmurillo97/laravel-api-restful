@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Log;
  *  description="A robust and versatile API for managing blog posts, featuring both public and private routes. This API enables users to create, read, update, and delete posts, with secure authentication and role-based access control. Ideal for demonstrating API development and RESTful principles in Laravel.",
  * )
  * 
- * @OA\Server(url="http://localhost/laravel-api-restful/public")
+ * @OA\Server(
+ *      url="http://laravel-api.test"
+ * )
  * 
  * @OA\SecurityScheme(
  *  securityScheme="sanctum",

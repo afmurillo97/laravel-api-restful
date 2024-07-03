@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Log;
  *     description="Explore the enhanced features of our API Post V2, delivering robust CRUD operations for managing blog posts efficiently. This version introduces enriched post details including post ID, title, slug, content, author information, and creation date formatted as dd/mm/yyyy. Experience seamless authentication with JWT tokens and comprehensive error handling for a smooth developer experience.",
  * )
  *
- * @OA\Server(url="http://localhost/laravel-api-restful/public")
+ * @OA\Server(
+ *      url="http://laravel-api.test"
+ * )
  * 
  * @OA\SecurityScheme(
  *  securityScheme="sanctum",
@@ -27,7 +29,6 @@ use Illuminate\Support\Facades\Log;
  *  description="Enter the token in the format: Bearer {token}"
  * )
  */
-
 class PostController extends Controller
 {
     /**
