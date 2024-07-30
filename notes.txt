@@ -11,6 +11,14 @@ sudo chmod -R 775 /var/www/html/laravel-api-restful
 
 sudo chown -R www-data:www-data /var/www/html/laravel-api-restful
 
+
+# Cambiar el propietario y permisos (ajustar la ruta según proyecto)
+sudo chown -R $USER:$USER /var/www/html/felipe-test-app/storage
+sudo chown -R $USER:$USER /var/www/html/felipe-test-app/bootstrap/cache
+sudo chmod -R 775 /var/www/html/felipe-test-app/storage
+sudo chmod -R 775 /var/www/html/felipe-test-app/bootstrap/cache
+
+
 -- Create Model with -c: controller m: migration f: factory
 
 php artisan make:model {model-name} -cmf
